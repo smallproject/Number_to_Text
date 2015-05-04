@@ -34,19 +34,19 @@ namespace Number_to_text
             string stringvalue = "";
             decimal newValueDecimal = valueDecimal;
             
-            millions = Convert.ToInt16((newValueDecimal - (newValueDecimal%1000000))/1000000);
+            millions = Convert.ToInt32((newValueDecimal - (newValueDecimal%1000000))/1000000);
             newValueDecimal = newValueDecimal - (millions * 10000);
 
-            thousands = Convert.ToInt16((newValueDecimal - (newValueDecimal%1000))/1000);
+            thousands = Convert.ToInt32((newValueDecimal - (newValueDecimal % 1000)) / 1000);
             newValueDecimal = newValueDecimal - (thousands * 1000);
 
-            hundreds = Convert.ToInt16((newValueDecimal - (newValueDecimal%100))/100);
+            hundreds = Convert.ToInt32((newValueDecimal - (newValueDecimal % 100)) / 100);
             newValueDecimal = newValueDecimal - (hundreds * 100);
 
-            tens = Convert.ToInt16((newValueDecimal - (newValueDecimal%10))/10);
+            tens = Convert.ToInt32((newValueDecimal - (newValueDecimal % 10)) / 10);
             newValueDecimal = newValueDecimal - (tens * 10);
 
-            ones = Convert.ToInt16((newValueDecimal - (newValueDecimal % 1)) / 1);
+            ones = Convert.ToInt32((newValueDecimal - (newValueDecimal % 1)) / 1);
             newValueDecimal = newValueDecimal - (ones * 1);
             
             Console.WriteLine("10k:{0} 1k:{1} 1h:{2} tens:{3} ones:{4}",millions, thousands, hundreds, tens, ones);
@@ -61,25 +61,25 @@ namespace Number_to_text
             if (billions != 0)
             {
                 stringvalue = stringvalue + billionstext(billions);
-                addSpace(stringvalue);
+                stringvalue = addSpace(stringvalue);
             }
 
             if (millions != 0)
             {
                 stringvalue = stringvalue + millionstext(millions);
-                addSpace(stringvalue);
+                stringvalue = addSpace(stringvalue);
             }
 
             if (thousands != 0)
             {
                 stringvalue = stringvalue + thousandtext(thousands);
-                addSpace(stringvalue);
+                stringvalue = addSpace(stringvalue);
             }
 
             if (hundreds != 0)
             {
                 stringvalue = stringvalue + hundredstext(hundreds);
-                addSpace(stringvalue);
+                stringvalue = addSpace(stringvalue);
             }
 
             if (tens != 0)
@@ -87,13 +87,13 @@ namespace Number_to_text
                 if (tens >= 2)
                 {
                     stringvalue = stringvalue + tenstext(tens);
-                    addSpace(stringvalue);
+                    stringvalue = addSpace(stringvalue);
                 }
                 else
                 {
                     int twenties = (tens*10) + ones;
                     stringvalue = stringvalue + twentiestext(twenties);
-                    addSpace(stringvalue);
+                    stringvalue = addSpace(stringvalue);
                     ones = 0;
                 }
 
@@ -263,32 +263,32 @@ namespace Number_to_text
 
         private static string hundredstext(int value)
         {
-            string stringvalue = onestext(value) + " hundred";
+            string stringvalue = onestext(value) + " " + "hundred";
             return stringvalue;
         }
 
         private static string thousandtext(int value)
         {
-            string stringvalue = onestext(value) + " thousand";
+            string stringvalue = onestext(value) + " " + "thousand";
             return stringvalue;
         }
 
 
         private static string millionstext(int value)
         {
-            string stringvalue = onestext(value) + " million";
+            string stringvalue = onestext(value) + " " + "million";
             return stringvalue;
         }
 
         private static string billionstext(int value)
         {
-            string stringvalue = onestext(value) + " billion";
+            string stringvalue = onestext(value) + " " + "billion";
             return stringvalue;
         }
 
         private static string trillionstext(int value)
         {
-            string stringvalue = onestext(value) + " trillion";
+            string stringvalue = onestext(value) + " " + "trillion";
             return stringvalue;
         }
 
